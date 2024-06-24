@@ -56,6 +56,8 @@ with st.sidebar:
     st.markdown("# INTERPOLASI BEBAN")
     interpolasi_per_ketinggian = st.number_input("Munculkan Beban Pada Ketinggian ?",
                                                  value=0.1)
+    # Note
+    st.markdown("Dikembangkan Oleh : **Kiki Fadilah Tanjung**")
 # PARAMETER UNTUK ANALISIS
 q_ll = beban_hidup
 B_wall = wall_width
@@ -240,7 +242,7 @@ st.markdown("""Kondisi kesetimbangan gaya di belakang kepala jembatan dapat dili
 st.latex(P_ae_latex)
 st.markdown("dengan nilai koefisien tekanan aktif seismik $k_{ae}$ adalah")
 st.latex(k_ae_latex)
-st.markdown("Dimana nilai, $\theta_{eq}$ dan $k_h$ adaleh sebagai berikut:")
+st.markdown("Dimana nilai, $\\theta_{eq}$ dan $k_h$ adaleh sebagai berikut:")
 col_B1,col_B2=st.columns(2)
 with col_B1:
     st.latex(theta_eq_latex)
@@ -267,3 +269,6 @@ fig_2 = px.line(df_tekanan_tanah_gempa,
 st.plotly_chart(fig_2,theme="streamlit",use_container_width=True)
 P_ae_inter=linear_interpolation(0,0,H_wall,P_ae,interpolasi_per_ketinggian)
 st.markdown(f"Untuk beban $P_a$ pada ketinggian {interpolasi_per_ketinggian} m adalah sebesar = ${round(P_ae_inter)} kN/m$")
+st.markdown("# Pengaplikasian Gaya")
+st.image('aplikasi_gaya_tekanan.jpg',
+            caption="Gambar 4 : Aplikasi Gaya Pada Perhitungan")
