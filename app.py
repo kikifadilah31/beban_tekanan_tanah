@@ -213,7 +213,7 @@ df_tekanan_tanah_aktif=pd.DataFrame({
     "Tekanan Tanah (kN/m)":y_P_a
     },index=None)
 
-fig_1 = px.area(df_tekanan_tanah_aktif,
+fig_1 = px.line(df_tekanan_tanah_aktif,
               x="Tekanan Tanah (kN/m)",
               y="Tinggi Wall (m)",
               range_x=[0,P_a],
@@ -248,15 +248,15 @@ with col_B2:
     st.latex(k_h_latex)
 st.markdown(f"Dari hasil analisis di dapat nilai tekanan tanah lateral akibat gempa adalah ${round(P_ae,ndigits=3)} kN/m$ di bawah ini di tampilkan diagram beban tekanan tanah lateral aktif $P_{{ae}}$ dalam variasi ketinggian dinding")
 
-y_P_ae=linear_interpolation(0,P_ae,H_wall,0,x_tinggi_wall)
+y_P_ae=linear_interpolation(0,0,H_wall,P_ae,x_tinggi_wall)
 df_tekanan_tanah_gempa=pd.DataFrame({
     "Tinggi Wall (m)":x_tinggi_wall,
     "Tekanan Tanah Akibat Gempa (kN/m)":y_P_ae
     },index=None)
-fig_2 = px.area(df_tekanan_tanah_gempa,
+fig_2 = px.line(df_tekanan_tanah_gempa,
               x="Tekanan Tanah Akibat Gempa (kN/m)",
               y="Tinggi Wall (m)",
-              range_x=[P_ae,0],
+              range_x=[0,P_ae],
               range_y=[0,H_wall],
               markers=True,
               )
@@ -265,5 +265,5 @@ fig_2 = px.area(df_tekanan_tanah_gempa,
     #yaxis = dict(range=[0,H_wall]),
 #)
 st.plotly_chart(fig_2,theme="streamlit",use_container_width=True)
-P_ae_inter=linear_interpolation(P_ae,0,H_wall,0,interpolasi_per_ketinggian)
+P_ae_inter=linear_interpolation(0,0,H_wall,P_ae,interpolasi_per_ketinggian)
 st.markdown(f"Untuk beban $P_a$ pada ketinggian {interpolasi_per_ketinggian} m adalah sebesar = ${round(P_ae_inter)} kN/m$")
