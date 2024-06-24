@@ -256,7 +256,7 @@ df_tekanan_tanah_gempa=pd.DataFrame({
 fig_2 = px.area(df_tekanan_tanah_gempa,
               x="Tekanan Tanah Akibat Gempa (kN/m)",
               y="Tinggi Wall (m)",
-              range_x=[0,P_ae],
+              range_x=[P_ae,0],
               range_y=[0,H_wall],
               markers=True,
               )
@@ -265,5 +265,5 @@ fig_2 = px.area(df_tekanan_tanah_gempa,
     #yaxis = dict(range=[0,H_wall]),
 #)
 st.plotly_chart(fig_2,theme="streamlit",use_container_width=True)
-P_ae_inter=linear_interpolation(0,P_ae,H_wall,0,interpolasi_per_ketinggian)
+P_ae_inter=linear_interpolation(P_ae,0,H_wall,0,interpolasi_per_ketinggian)
 st.markdown(f"Untuk beban $P_a$ pada ketinggian {interpolasi_per_ketinggian} m adalah sebesar = ${round(P_ae_inter)} kN/m$")
