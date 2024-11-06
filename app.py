@@ -76,7 +76,7 @@ k_v = koefisien_percepatan_vertical
 
 @handcalc(override="long",precision=2)
 def gamma_koefisien_tanah_aktif():
-    Gamma = (1+sqrt((sin(phi_f+delta)*sin(phi_f-beta))/(sin(theta-delta)*sin(phi_f+beta))))**2
+    Gamma = (1+sqrt((sin(phi_f+delta)*sin(phi_f-beta))/(sin(theta-delta)*sin(theta+beta))))**2
     return Gamma
 Gamma_latex,Gamma=gamma_koefisien_tanah_aktif()
 
